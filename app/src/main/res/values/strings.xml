@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MVVM Starter</string>
+    <string name="menu_bookmark">Bookmark</string>
+</resources>

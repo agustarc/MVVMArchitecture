@@ -1,0 +1,133 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId "com.leopold.mvvm"
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'LICENSE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // Support Libraries
+    implementation deps.support.app_compat
+    implementation deps.support.v4
+    implementation deps.support.design
+    implementation deps.support.recyclerview
+    implementation deps.constraint_layout
+
+    // Architecture components
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    implementation deps.paging_ktx
+
+    // Compiler
+    kapt deps.lifecycle.compiler
+    kapt deps.room.compiler
+
+    // RxJava
+    implementation deps.rx_android
+    implementation deps.rxjava2
+
+    // Kotlin
+    implementation deps.kotlin.stdlib
+
+    // Koin
+    implementation deps.koin.core
+    implementation deps.koin.android
+    implementation deps.koin.architecture
+
+    // Retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.rx_adapter
+    implementation deps.retrofit.gson
+
+    // OkHttp
+    implementation deps.okhttp_logging_interceptor
+
+    // Dependencies for local unit tests
+    testImplementation deps.junit
+    testImplementation deps.mockito.all
+    testImplementation deps.hamcrest
+    testImplementation deps.kotlin.stdlib
+    testImplementation deps.kotlin.test
+    testImplementation deps.koin.test, { exclude group: 'org.mockito' }
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation deps.axt.runner
+    androidTestImplementation deps.axt.rules
+
+    // Dependencies for Android unit tests
+    androidTestImplementation deps.junit
+    androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+
+    // Espresso UI Testing
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+    androidTestImplementation deps.espresso.intents
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation deps.support.annotations
+    androidTestImplementation deps.support.v4
+    androidTestImplementation deps.support.app_compat
+    androidTestImplementation deps.support.design
+}
