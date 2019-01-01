@@ -14,6 +14,7 @@ import com.leopold.mvvm.viewmodel.DisposableViewModel
  */
 class SearchViewModel(private val api: SearchAPI, private val dao: BookmarkDao) : DisposableViewModel() {
     private var query: String = ""
+        get() = if (field.isEmpty()) "MVVM" else field
 
     private val _refreshing: NotNullMutableLiveData<Boolean> = NotNullMutableLiveData(false)
     val refreshing: NotNullMutableLiveData<Boolean>
@@ -25,7 +26,7 @@ class SearchViewModel(private val api: SearchAPI, private val dao: BookmarkDao) 
 
     fun search() {
         val params = mutableMapOf<String, String>().apply {
-            this["q"] = if (query.isEmpty()) "MVVM" else query
+            this["q"] = query
             this["sort"] = "stars"
         }
 
