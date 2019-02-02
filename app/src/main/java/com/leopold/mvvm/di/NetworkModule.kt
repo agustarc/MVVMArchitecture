@@ -1,6 +1,5 @@
 package com.leopold.mvvm.di
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.leopold.mvvm.BuildConfig
 import okhttp3.Cache
@@ -24,9 +23,9 @@ private const val READ_TIMEOUT = 15L
 val networkModule = module {
     single { Cache(androidApplication().cacheDir, 10L * 1024 * 1024) }
 
-    single<Gson> { GsonBuilder().create() }
+    single { GsonBuilder().create() }
 
-    single<OkHttpClient> {
+    single {
         OkHttpClient.Builder().apply {
             cache(get())
             connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
@@ -42,7 +41,7 @@ val networkModule = module {
         }.build()
     }
 
-    single<Retrofit> {
+    single {
         Retrofit.Builder()
             .baseUrl("https://api.github.com")
             .addConverterFactory(GsonConverterFactory.create(get()))

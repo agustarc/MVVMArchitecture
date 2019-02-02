@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.leopold.mvvm.R
 import com.leopold.mvvm.data.db.entity.Bookmark
 import com.leopold.mvvm.databinding.LayoutBookmarkItemBinding
+import com.leopold.mvvm.ui.BindingViewHolder
 import com.leopold.mvvm.viewmodel.bookmark.BookmarkViewModel
 
 /**
@@ -32,9 +32,7 @@ class BookmarkAdapter : PagedListAdapter<Bookmark, BookmarkAdapter.BookmarkViewH
         }
     }
 
-    class BookmarkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding: LayoutBookmarkItemBinding = LayoutBookmarkItemBinding.bind(view)
-    }
+    class BookmarkViewHolder(view: View) : BindingViewHolder<LayoutBookmarkItemBinding>(view)
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Bookmark>() {

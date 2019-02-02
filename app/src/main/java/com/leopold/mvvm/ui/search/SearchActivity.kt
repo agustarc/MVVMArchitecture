@@ -4,22 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import androidx.annotation.LayoutRes
 import com.leopold.mvvm.R
 import com.leopold.mvvm.databinding.ActivitySearchBinding
+import com.leopold.mvvm.ui.BindingActivity
 import com.leopold.mvvm.ui.bookmark.BookmarkActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 /**
  * @author Leopold
  */
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BindingActivity<ActivitySearchBinding>() {
+    @LayoutRes override fun getLayoutResId() = R.layout.activity_search
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivitySearchBinding>(this, R.layout.activity_search)
         binding.vm = getViewModel()
         binding.setLifecycleOwner(this)
     }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leopold.mvvm.R
 import com.leopold.mvvm.data.remote.domain.Repository
 import com.leopold.mvvm.databinding.LayoutRepositoryItemBinding
+import com.leopold.mvvm.ui.BindingViewHolder
 import com.leopold.mvvm.viewmodel.search.SearchViewModel
 
 /**
@@ -32,7 +33,5 @@ class RepositoryAdapter(var items: List<Repository> = arrayListOf()) : RecyclerV
         return items.size
     }
 
-    class RepositoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding: LayoutRepositoryItemBinding = LayoutRepositoryItemBinding.bind(view)
-    }
+    class RepositoryViewHolder(view: View) : BindingViewHolder<LayoutRepositoryItemBinding>(view)
 }
