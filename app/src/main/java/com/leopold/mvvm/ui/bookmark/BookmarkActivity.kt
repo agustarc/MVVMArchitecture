@@ -11,7 +11,8 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
  * @author Leopold
  */
 class BookmarkActivity : BindingActivity<ActivityBookmarkBinding>() {
-    @LayoutRes override fun getLayoutResId() = R.layout.activity_bookmark
+    @LayoutRes
+    override fun getLayoutResId() = R.layout.activity_bookmark
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

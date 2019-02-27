@@ -8,6 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * @author Leopold
  */
-abstract class BindingViewHolder<out T> (view: View): RecyclerView.ViewHolder(view) where T : ViewDataBinding {
+abstract class BindingViewHolder<out T : ViewDataBinding>(view: View) : RecyclerView.ViewHolder(view) {
     val binding: T = DataBindingUtil.bind(view)!!
 }

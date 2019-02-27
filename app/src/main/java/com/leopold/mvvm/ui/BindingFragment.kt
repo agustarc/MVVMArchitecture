@@ -12,8 +12,9 @@ import androidx.fragment.app.Fragment
 /**
  * @author Leopold
  */
-abstract class BindingFragment<T> : Fragment() where T : ViewDataBinding {
-    @LayoutRes abstract fun getLayoutResId(): Int
+abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
+    @LayoutRes
+    abstract fun getLayoutResId(): Int
 
     protected lateinit var binding: T
         private set

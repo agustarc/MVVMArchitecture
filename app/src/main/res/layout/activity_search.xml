@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="vm" type="com.leopold.mvvm.viewmodel.search.SearchViewModel"/>
+        <variable name="vm" type="com.leopold.mvvm.ui.search.SearchViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
                 android:layout_height="48dp"
                 android:src="@drawable/ic_search"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="@{() -> vm.search()}"
+                android:onClick="@{() -> vm.doSearch()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/search_edit"/>

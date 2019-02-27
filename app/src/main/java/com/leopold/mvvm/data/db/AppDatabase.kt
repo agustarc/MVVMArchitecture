@@ -20,16 +20,18 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         const val DB_VERSION = 1
         private const val DB_NAME = "mvvm_demo.db"
-        @Volatile private var INSTANCE: AppDatabase? = null
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: build(context).also { INSTANCE = it }
             }
 
-        private fun build(context: Context) = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DB_NAME)
-            .addMigrations(MIGRATION_1_TO_2)
-            .build()
+        private fun build(context: Context) =
+            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DB_NAME)
+                .addMigrations(MIGRATION_1_TO_2)
+                .build()
 
         private val MIGRATION_1_TO_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {

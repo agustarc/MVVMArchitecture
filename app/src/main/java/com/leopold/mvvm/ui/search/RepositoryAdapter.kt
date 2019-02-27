@@ -6,22 +6,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.leopold.mvvm.R
 import com.leopold.mvvm.data.remote.domain.Repository
-import com.leopold.mvvm.databinding.LayoutRepositoryItemBinding
+import com.leopold.mvvm.databinding.ItemRepositoryBinding
 import com.leopold.mvvm.ui.BindingViewHolder
-import com.leopold.mvvm.viewmodel.search.SearchViewModel
 
 /**
  * @author Leopold
  */
-class RepositoryAdapter(var items: List<Repository> = arrayListOf()) : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
-    private var vm: SearchViewModel? = null
-
-    fun setViewModel(vm: SearchViewModel) {
-        this.vm = vm
-    }
+class RepositoryAdapter(var items: List<Repository> = arrayListOf(), val vm: SearchViewModel) :
+    RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
-        return RepositoryViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_repository_item, parent, false))
+        return RepositoryViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_repository,
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
@@ -29,9 +30,6 @@ class RepositoryAdapter(var items: List<Repository> = arrayListOf()) : RecyclerV
         holder.binding.vm = vm
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
-    class RepositoryViewHolder(view: View) : BindingViewHolder<LayoutRepositoryItemBinding>(view)
+    override fun getItemCount() = items.size
+    class RepositoryViewHolder(view: View) : BindingViewHolder<ItemRepositoryBinding>(view)
 }

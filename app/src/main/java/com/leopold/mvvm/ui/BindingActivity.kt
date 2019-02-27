@@ -9,8 +9,9 @@ import androidx.databinding.ViewDataBinding
 /**
  * @author Leopold
  */
-abstract class BindingActivity<T> : AppCompatActivity() where T : ViewDataBinding {
-    @LayoutRes abstract fun getLayoutResId(): Int
+abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
+    @LayoutRes
+    abstract fun getLayoutResId(): Int
 
     protected lateinit var binding: T
         private set

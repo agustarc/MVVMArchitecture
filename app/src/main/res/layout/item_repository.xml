@@ -3,8 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="item" type="com.leopold.mvvm.data.db.entity.Bookmark"/>
-        <variable name="vm" type="com.leopold.mvvm.viewmodel.bookmark.BookmarkViewModel"/>
+        <variable name="item" type="com.leopold.mvvm.data.remote.domain.Repository"/>
+        <variable name="vm" type="com.leopold.mvvm.ui.search.SearchViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +13,7 @@
             android:padding="10dp">
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/bookmark_item_name"
+                android:id="@+id/repository_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
@@ -25,9 +25,9 @@
         <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_bookmark_remove"
+                android:src="@drawable/ic_bookmark_plus"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="@{() -> vm  != null ? vm.delete(item) : void}"
+                android:onClick="@{() -> vm  != null ? vm.saveToBookmark(item) : void}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>

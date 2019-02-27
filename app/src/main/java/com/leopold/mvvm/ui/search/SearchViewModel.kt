@@ -1,5 +1,6 @@
-package com.leopold.mvvm.viewmodel.search
+package com.leopold.mvvm.ui.search
 
+import com.leopold.mvvm.core.BaseViewModel
 import com.leopold.mvvm.data.db.dao.BookmarkDao
 import com.leopold.mvvm.data.db.entity.Bookmark
 import com.leopold.mvvm.data.remote.api.SearchAPI
@@ -7,12 +8,11 @@ import com.leopold.mvvm.data.remote.domain.Repository
 import com.leopold.mvvm.util.NotNullMutableLiveData
 import com.leopold.mvvm.util.ioThread
 import com.leopold.mvvm.extension.with
-import com.leopold.mvvm.viewmodel.DisposableViewModel
 
 /**
  * @author Leopold
  */
-class SearchViewModel(private val api: SearchAPI, private val dao: BookmarkDao) : DisposableViewModel() {
+class SearchViewModel(private val api: SearchAPI, private val dao: BookmarkDao) : BaseViewModel() {
     private var query: String = ""
         get() = if (field.isEmpty()) "MVVM" else field
 
@@ -24,7 +24,7 @@ class SearchViewModel(private val api: SearchAPI, private val dao: BookmarkDao) 
     val items: NotNullMutableLiveData<List<Repository>>
         get() = _items
 
-    fun search() {
+    fun doSearch() {
         val params = mutableMapOf<String, String>().apply {
             this["q"] = query
             this["sort"] = "stars"

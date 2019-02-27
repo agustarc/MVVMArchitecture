@@ -1,4 +1,4 @@
-package com.leopold.mvvm.viewmodel
+package com.leopold.mvvm.core
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -6,8 +6,10 @@ import io.reactivex.disposables.Disposable
 
 /**
  * @author Leopold
+ * Kolon Corp
+ * joongwon_baik@kolon.com
  */
-open class DisposableViewModel : ViewModel() {
+open class BaseViewModel : ViewModel() {
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     fun addToDisposable(disposable: Disposable) {

@@ -15,7 +15,8 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
  * @author Leopold
  */
 class SearchActivity : BindingActivity<ActivitySearchBinding>() {
-    @LayoutRes override fun getLayoutResId() = R.layout.activity_search
+    @LayoutRes
+    override fun getLayoutResId() = R.layout.activity_search
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.bookmark -> {
                 startActivity(Intent(this, BookmarkActivity::class.java))
                 true
